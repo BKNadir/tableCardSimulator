@@ -6,9 +6,9 @@ import java.util.Collections;
 public class Deck {
     private ArrayList<Card> deck;
 
-    public Deck(boolean jocker, int nbDeck){
+    public Deck(boolean joker, int nbDeck){
         this.deck = new ArrayList<Card>();
-        if (jocker) {
+        if (joker) {
             deck.add(new Card());
             deck.add(new Card());
         }

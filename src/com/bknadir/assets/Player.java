@@ -26,4 +26,10 @@ public class Player {
     public void setScore(int score) {
         this.score = score;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o.equals(null)) throw new NullPointerException("Player is null");
+        return this.username == ((Player)(o)).getUsername();
+    }
 }
