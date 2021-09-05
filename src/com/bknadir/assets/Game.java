@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class Game {
 
-    private Deck deck;
-    private ArrayList<Player> players;
-    private Scanner sc = new Scanner(System.in);
+    protected Deck deck;
+    protected ArrayList<Player> players;
+    protected Scanner sc = new Scanner(System.in);
 
     public Game(boolean joker, int nbDeck, int nbIA){
         this.deck = new Deck(joker, nbDeck);
@@ -17,24 +17,29 @@ public class Game {
         }
     }
 
-    public void run(){
-
-    }
-
-    private void initiate(){
+    public void createPlayers(){
         Player p;
+        String name;
         System.out.println("Combien de joueurs ?");
         int nbPlayer = sc.nextInt();
         for (int i = 0; i < nbPlayer; i++){
             System.out.println("Entrez le pseudo du " + (i+1) + " joueur :");
             do {
-                p = new Player(sc.nextLine());
+                name = sc.nextLine();
+                p = new Player(name);
                 if (players.contains(p)){
-
+                    System.out.println("Ce pseudo est déjà utilisé. Choisisez en un autre.");
                 }
             } while (!players.contains(p));
             players.add(p);
         }
     }
 
+    public void initiate() throws Exception {
+
+    }
+
+    public void run() throws Exception {
+
+    }
 }

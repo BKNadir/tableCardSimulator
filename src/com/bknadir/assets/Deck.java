@@ -66,6 +66,18 @@ public class Deck {
         return !c.equals(null);
     }
 
+    public Card removeCard(int nb) throws Exception {
+        Card c;
+        try{
+            if (nb > deck.size()) throw new Exception("Card not found");
+            c = deck.get(0);
+        }
+        catch(Exception e){
+            return null;
+        }
+        return c;
+    }
+
     public Card removeCard(Card card) throws Exception {
         Card c = findCard(card);
         try{

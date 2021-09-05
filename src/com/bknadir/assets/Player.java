@@ -29,7 +29,6 @@ public class Player {
 
     @Override
     public boolean equals(Object o) {
-        if (o.equals(null)) throw new NullPointerException("Player is null");
         return this.username == ((Player)(o)).getUsername();
     }
 }
