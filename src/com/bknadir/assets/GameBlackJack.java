@@ -4,7 +4,7 @@ import java.util.Collections;
 
 public class GameBlackJack extends Game{
     public GameBlackJack() {
-        super(false, 1, 1);
+        super(false, 3, 1);
         createPlayers();
         Collections.reverse(players);
     }
@@ -25,29 +25,32 @@ public class GameBlackJack extends Game{
             initiate();
             for (Player p : players) {
                 if (!p.getUsername().contains("IA")) {
-                    System.out.println("Le croupier montre sa carte " + players.get(players.size()).getHand().getDeck().get(0));
+                    System.out.println("Le croupier montre sa carte " + players.get(players.size()-1).getHand().getDeck().get(0));
                     do{
                         System.out.println("Voici votre main :");
                         System.out.println(p.getHand().getDeck());
-                        if (isBlackjack(deck, true) == 21 || isBlackjack(deck, false) == 21){
+                        if (isBlackjack(p.getHand(), true) == 21 || isBlackjack(p.getHand(), false) == 21){
                             System.out.println("Tu as un BlackJack. Gagné !");
                             res = "";
                         }else {
                             System.out.println("Voullez vous piocher une carte ?");
-                            res = sc.nextLine();
+                            res = sc.next();
+                        }
+                        if ((res == "o") || (res == "O") || (res == "oui") || (res == "Oui") || (res == "OUI") ){
+                            p.getHand().addCard(deck.removeCard(0));
                         }
                     } while ((res == "o") || (res == "O") || (res == "oui") || (res == "Oui") || (res == "OUI"));
 
 
                 }else {
-                    if (isBlackjack(deck, true) == 21 || isBlackjack(deck, false) == 21){
-
-                    } else if (isBlackjack(deck, true) < 17 || isBlackjack(deck, false) < 17){
-
+                    if (isBlackjack(p.getHand(), true) == 21 || isBlackjack(p.getHand(), false) == 21){
+                        System.out.println("Le croupier à un BlackJack !");
+                    } else if (isBlackjack(p.getHand(), true) < 17 || isBlackjack(p.getHand(), false) < 17){
+                        p.getHand().addCard(deck.removeCard(0));
                     }
                 }
                 System.out.println("Continuer ?");
-                res = sc.nextLine();
+                res = sc.next();
                 run = ((res == "o") || (res == "O") || (res == "oui") || (res == "Oui") || (res == "OUI"));
             }
         } while (run);

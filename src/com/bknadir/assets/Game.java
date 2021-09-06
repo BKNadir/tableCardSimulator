@@ -19,18 +19,19 @@ public class Game {
 
     public void createPlayers(){
         Player p;
-        String name;
+        String username;
         System.out.println("Combien de joueurs ?");
         int nbPlayer = sc.nextInt();
         for (int i = 0; i < nbPlayer; i++){
-            System.out.println("Entrez le pseudo du " + (i+1) + " joueur :");
+
             do {
-                name = sc.nextLine();
-                p = new Player(name);
+                System.out.println("Entrez le pseudo du " + (i+1) + " joueur :");
+                username = sc.next();
+                p = new Player(username);
                 if (players.contains(p)){
                     System.out.println("Ce pseudo est déjà utilisé. Choisisez en un autre.");
                 }
-            } while (!players.contains(p));
+            } while (players.contains(p));
             players.add(p);
         }
     }

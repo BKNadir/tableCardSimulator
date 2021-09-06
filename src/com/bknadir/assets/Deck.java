@@ -70,7 +70,7 @@ public class Deck {
         Card c;
         try{
             if (nb > deck.size()) throw new Exception("Card not found");
-            c = deck.get(0);
+            c = deck.remove(0);
         }
         catch(Exception e){
             return null;
